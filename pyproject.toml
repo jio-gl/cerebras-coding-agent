@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cerebras-agent"
+description = "A local agent for code development using Cerebras API"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+dynamic = ["version"]
+authors = [
+    {name = "Cerebras", email = "info@cerebras.net"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.7.0",
+    "typer>=0.9.0",
+    "gitignore-parser>=0.1.0",
+    "cerebras-cloud-sdk>=0.1.0",
+    "colorama>=0.4.4",
+    "pydantic>=2.0.0",
+    "click>=8.0.0",
+    "shellingham>=1.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/jio-gl/cerebras-coding-agent"
+Issues = "https://github.com/jio-gl/cerebras-coding-agent/issues"
+
+[project.scripts]
+cerebras-agent = "cerebras_agent.cli:app"
+
+[tool.setuptools]
+packages = ["cerebras_agent"]
+
+[tool.setuptools.dynamic]
+version = {attr = "cerebras_agent.__version__"}
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true 
