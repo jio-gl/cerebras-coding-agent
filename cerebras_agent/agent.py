@@ -16,7 +16,6 @@ from .file_ops import FileOperations
 import json
 import subprocess
 import re
-import openai
 import ast
 
 # Import DEBUG_MODE from cli or default to False
