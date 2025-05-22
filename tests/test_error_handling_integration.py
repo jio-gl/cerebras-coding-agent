@@ -318,13 +318,10 @@ def test_context_compression_with_large_repo(agent, temp_project):
     assert "truncated" in compressed["error_output"]
 
 @patch('os.path.exists')
-def test_multiple_fix_approaches_standalone(mock_exists):
-    """Test that multiple fix approaches are generated for errors."""
-    # Create a direct agent instance without fixtures
-    agent = CerebrasAgent()
-    
-    # Mock the environment detection since we're not actually running commands
+def test_multiple_fix_approaches_standalone(mock_exists, real_cerebras_api_key):
+    """Test multiple fix approaches without repository context."""
     mock_exists.return_value = True
+    agent = CerebrasAgent(api_key=real_cerebras_api_key)
     
     # Create error info with the correct format for Node.js error
     error_info = {

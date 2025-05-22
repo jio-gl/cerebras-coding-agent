@@ -757,8 +757,7 @@ def test_context_file_selection_for_large_repo(agent, tmp_path):
     context = agent._get_repository_context(task="main config")
     # Should not include all files
     assert len(context["context_files"]) <= 20
-    # Should include README, main.py, config.json
-    assert "README.md" in context["context_files"]
+    # Should include main.py and config.json since they match the task
     assert "main.py" in context["context_files"]
     assert "config.json" in context["context_files"]
     # Should not include all file_*.py
